@@ -18,8 +18,7 @@ def solve_stage(stage, curr, prev):
         return b.index(sol)+1, sol
     else:                   # solution depends on earlier stage
         t = sol[0]; st = int(sol[1])    # type, stage
-        # find 'previous' solution
-        p_sol = solve_stage(st, prev[st-1], prev[:st-1])
+        p_sol = prev[st-1]    # find 'previous' solution
         # now find the current solution based on earlier position/label
         if t == 'p':    # solution is position
             return p_sol[0], b[p_sol[0]-1]
@@ -28,21 +27,23 @@ def solve_stage(stage, curr, prev):
 
 
 def solve_all():
-    NUM_STAGES = 5
-    prev = []
+    NUM_STAGES = 5  # number of stages in module
+    prev = []       # solutions to previous stages
+    # solve each stage and display solution
     for s in range(NUM_STAGES):
-        i = input()
-        d = int(i[0]); b = i[-4:]
-        soln = solve_stage(s+1, [d, b], prev)
-        prev.append([d, b])
-        print(soln)
+        i = input() # assume it's formatted like: "1 1234"
+        d = int(i[0]); b = i[-4:]   # display number, buttons
+        soln = solve_stage(s+1, [d, b], prev)   # get current stage's solution
+        prev.append(soln) # store solution for following stages
+        print(soln) # display solution
 
 
 if __name__ == '__main__':
     #print(solve_stage(1, [1, "4321"], []))  # (2, '3')
-    #print(solve_stage(2, [4, "3412"], [[1, "4321"]]))   # (2, '4')
-    #print(solve_stage(3, [4, "3124"], [[1, "4321"], [4, "3412"]]))   # (4, '4')
-    #print(solve_stage(4, [3, "2143"], [[1, "4321"], [4, "3412"], [4, "3124"]]))   # (2, '1')
-    #print(solve_stage(5, [3, "1423"], [[1, "4321"], [4, "3412"], [4, "3124"], [3, "2143"]]))   # (1, '1')
+    #print(solve_stage(2, [4, "3412"], [(2, '3')]))  # (2, '4')
+    #print(solve_stage(3, [4, "3124"], [(2, '3'), (2, '4')]))    # (4, '4')
+    #print(solve_stage(4, [3, "2143"], [(2, '3'), (2, '4'), (4, '4')]))  # (2, '1')
+    #print(solve_stage(5, [3, "1423"], [(2, '3'), (2, '4'), (4, '4'), (2, '1')]))    # (1, '1')
+    #print()
 
     solve_all()
