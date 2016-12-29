@@ -1,15 +1,15 @@
-sols = {1: [2,      2,      3,      4],
-        2: ['4',    'p1',   1,      'p1'],
-        3: ['l2',   'l1',   3,      '4'],
-        4: ['p1',   1,      'p2',   'p2'],
-        5: ['l1',   'l2',   'l4',   'l3']}
+sols = [[2,      2,      3,      4],
+        ['4',    'p1',   1,      'p1'],
+        ['l2',   'l1',   3,      '4'],
+        ['p1',   1,      'p2',   'p2'],
+        ['l1',   'l2',   'l4',   'l3']]
 
 
 # solve a specific stage of the module, returns (position, label)
 def solve_stage(stage, curr, prev):
     d = curr[0]             # display number
     b = curr[1]             # buttons
-    sol = sols[stage][d-1]  # solution
+    sol = sols[stage-1][d-1]  # solution
 
     # interpret solution and return label
     if type(sol) == int:    # solution is position
