@@ -25,7 +25,8 @@ def solve(opts):
     return sols # return solution list
 
 
-if __name__ == '__main__':
+# run solve() on more and more input until one solution is found
+def solve_all():
     opts = []
     solved = False
     
@@ -38,7 +39,6 @@ if __name__ == '__main__':
         
         # check for solution with current data
         s = solve(opts)
-        print(s)
         if len(s) <= 1: solved = True
 
     # print solution
@@ -47,3 +47,6 @@ if __name__ == '__main__':
     else:
         print('NO SOLUTION')
 
+
+if __name__ == '__main__':
+    solve_all()
