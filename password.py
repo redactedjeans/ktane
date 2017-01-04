@@ -27,26 +27,30 @@ def solve(opts):
 
 # run solve() on more and more input until one solution is found
 def solve_all():
+    # set required variables
     opts = []
     solved = False
-    
+
+    # loop while no solution is found
     i = 0
     while not solved:
         # get 'column'
-        n = input()
+        n = input().strip()
         opts.append(list(n))
         i += 1
-        
+
         # check for solution with current data
         s = solve(opts)
         if len(s) <= 1: solved = True
 
-    # print solution
-    if (s):
-        print('SOLUTION:', s[0])
-    else:
-        print('NO SOLUTION')
+    # return solution
+    if (s): return s[0]
+    else: return None
 
 
 if __name__ == '__main__':
-    solve_all()
+    s = solve_all()
+    if s:
+        print("The solution is: " + s + ".")
+    else:
+        print("There is no solution.")

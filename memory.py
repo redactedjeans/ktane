@@ -26,16 +26,17 @@ def solve_stage(stage, curr, prev):
             return b.index(p_sol[1])+1, p_sol[1]
 
 
-def solve_all():
+def solve_all(debug=0):
     NUM_STAGES = 5  # number of stages in module
     prev = []       # solutions to previous stages
     # solve each stage and display solution
     for s in range(NUM_STAGES):
-        i = input() # assume it's formatted like: "1 1234"
+        i = input().strip() # assume it's formatted like: "1 1234"
         d = int(i[0]); b = i[-4:]   # display number, buttons
         soln = solve_stage(s+1, [d, b], prev)   # get current stage's solution
         prev.append(soln) # store solution for following stages
-        print(soln) # display solution
+        if debug: print(soln)
+    return prev # return list of solutions
 
 
 if __name__ == '__main__':
@@ -46,4 +47,5 @@ if __name__ == '__main__':
     #print(solve_stage(5, [3, "1423"], [(2, '3'), (2, '4'), (4, '4'), (2, '1')]))    # (1, '1')
     #print()
 
-    solve_all()
+    s = solve_all(1)
+    print(s)
