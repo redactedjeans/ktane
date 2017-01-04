@@ -82,5 +82,5 @@ def solve_all(debug=0):
 
 
 if __name__ == '__main__':
-    s = solve_all(debug=1)
+    s = solve_all(1)
     print(s)

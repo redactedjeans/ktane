@@ -29,6 +29,7 @@ def solve_stage(stage, curr, prev):
 def solve_all(debug=0):
     NUM_STAGES = 5  # number of stages in module
     prev = []       # solutions to previous stages
+
     # solve each stage and display solution
     for s in range(NUM_STAGES):
         i = input().strip() # assume it's formatted like: "1 1234"
@@ -36,6 +37,7 @@ def solve_all(debug=0):
         soln = solve_stage(s+1, [d, b], prev)   # get current stage's solution
         prev.append(soln) # store solution for following stages
         if debug: print(soln)
+        
     return prev # return list of solutions
 
 
