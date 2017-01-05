@@ -46,12 +46,13 @@ maze = [
 def solve():
     print(maze)
 
-    curr_cell = 2
+    curr_cell = 28
     row = curr_cell // 6
     col = curr_cell % 6
 
     print(maze[curr_cell])
 
+    print(curr_cell)
     print(row, col)
 
     open_wall = get_valid_cell(maze[curr_cell])
@@ -59,18 +60,20 @@ def solve():
     print(open_wall)
 
     if open_wall == 0:
-        row -= 1
+        curr_cell -= 6
 
     if open_wall == 1:
-        col += 1
+        curr_cell += 1
 
     if open_wall == 2:
-        row += 1
+        curr_cell += 6
 
     if open_wall == 3:
-        col -= 1
+        curr_cell -= 1
 
     print(row, col)
+
+    print(curr_cell)
 
 def get_valid_cell(cell):
     for i, val in enumerate(cell):
