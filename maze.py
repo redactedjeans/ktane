@@ -45,40 +45,41 @@ maze = [
 
 def solve():
     print(maze)
+    #row = curr_cell // 6
+    #col = curr_cell % 6
 
-    curr_cell = 28
-    row = curr_cell // 6
-    col = curr_cell % 6
+    start_cell = 21
+    end_cell = 0
+    curr_cell = start_cell
+
+    queue = [curr_cell]
 
     print(maze[curr_cell])
-
     print(curr_cell)
-    print(row, col)
+    print(queue)
 
-    open_wall = get_valid_cell(maze[curr_cell])
+    for i in range(0, 20):
+        curr_cell  = get_valid_cell(curr_cell, maze[curr_cell], queue)
+        queue.append(curr_cell)
+        print(curr_cell)
+        print(queue)
+        if curr_cell == end_cell:
+            print('Done!')
+            return
 
-    print(open_wall)
-
-    if open_wall == 0:
-        curr_cell -= 6
-
-    if open_wall == 1:
-        curr_cell += 1
-
-    if open_wall == 2:
-        curr_cell += 6
-
-    if open_wall == 3:
-        curr_cell -= 1
-
-    print(row, col)
-
-    print(curr_cell)
-
-def get_valid_cell(cell):
+def get_valid_cell(cell_idx, cell, queue):
     for i, val in enumerate(cell):
-        if val == 0:
-            return i
+        if i == 0:
+            neighbour = cell_idx - 6
+        if i == 1:
+            neighbour = cell_idx + 1
+        if i == 2:
+            neighbour =  cell_idx + 6
+        if i == 3:
+            neighbour = cell_idx - 1
+
+        if val == 0 and neighbour not in queue:
+            return neighbour
 
 def solve_all():
     solve()
